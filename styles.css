@@ -1,0 +1,196 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --danger-bg: #fee2e2;
+    --danger-text: #7f1d1d;
+    --border: #dbe3ee;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #111827;
+    color: white;
+    padding: 14px 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+header h1 {
+    margin: 0 0 12px;
+    font-size: 2rem;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+}
+
+.header-title img {
+    height: 100px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+}
+
+section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+}
+
+h2 {
+    margin-top: 0;
+    scroll-margin-top: calc(var(--header-height, 190px) + 16px);
+}
+
+.botonera {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.git-btn,
+#btnCopiar,
+#btnLimpiar {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: 0.2s ease;
+}
+
+.git-btn {
+    background: #e8eefc;
+    color: #1e3a8a;
+    border: 1px solid #c7d7ff;
+}
+
+.git-btn:hover {
+    background: #dbe7ff;
+    transform: translateY(-1px);
+}
+
+.git-btn.activo {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+#btnCopiar {
+    background: var(--primary);
+    color: white;
+}
+
+#btnCopiar:hover {
+    background: var(--primary-hover);
+}
+
+#btnLimpiar {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+#btnLimpiar:hover {
+    background: #d1d5db;
+}
+
+textarea {
+    width: 100%;
+    min-height: 90px;
+    resize: vertical;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-family: Consolas, monospace;
+    font-size: 0.95rem;
+    margin-top: 8px;
+    margin-bottom: 14px;
+}
+
+.acciones-resultado {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.info-box {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    background: #f9fbff;
+    margin-top: 10px;
+}
+
+.info-box h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.aviso-peligro {
+    background: var(--danger-bg);
+    border-color: #fecaca;
+    color: var(--danger-text);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--muted);
+}

@@ -1,0 +1,5 @@
+# Ignorar la carpeta v1 y todo su contenido
+v1/
+
+# Ignorar las imágenes que empiezan por img
+img*

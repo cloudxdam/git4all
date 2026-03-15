@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git4All</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header id="mainHeader">
+        <div class="header-title">
+            <img src="img/logo.png" alt="Git4All logo">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#about">Acerca de</a></li>
+                <li><a href="#use">Uso</a></li>
+                <li><a href="#configuracion">Configuración</a></li>
+                <li><a href="#iniciar">Iniciar</a></li>
+                <li><a href="#preparar">Preparar</a></li>
+                <li><a href="#commits">Commits</a></li>
+                <li><a href="#sincronizacion">Sincronización</a></li>
+                <li><a href="#ramas">Ramas</a></li>
+                <li><a href="#consultar">Consultar</a></li>
+                <li><a href="#remotos">Remotos</a></li>
+                <li><a href="#tags">Tags</a></li>
+                <li><a href="#stash">Stash</a></li>
+                <li><a href="#deshacer">Deshacer</a></li>
+                <li><a href="#resultado">Resultado</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section>
+            <h2 id="about">Acerca de Git4All</h2>
+            <p>Git4All es una chuleta interactiva para consultar comandos Git rápidamente.</p>
+            <p>Pulsa un botón y la aplicación mostrará el comando, una breve explicación y un aviso si conviene usarlo
+                con cuidado.</p>
+        </section>
+
+        <section>
+            <h2 id="use">Uso</h2>
+            <ul>
+                <li>Busca la categoría que te interesa.</li>
+                <li>Pulsa el botón del comando que quieras consultar.</li>
+                <li>Copia el comando generado.</li>
+                <li>Sustituye los marcadores como <code>&lt;archivo&gt;</code>, <code>&lt;rama&gt;</code>,
+                    <code>&lt;url&gt;</code> o <code>&lt;hash&gt;</code>.
+                </li>
+            </ul>
+        </section>
+
+        <!-- CONFIGURACIÓN -->
+        <section>
+            <h2 id="configuracion">Configuración</h2>
+            <div class="botonera">
+                <button class="git-btn"
+                    data-comando="git config --global init.defaultBranch main"
+                    data-descripcion="Hace que todos los repositorios nuevos usen 'main' como nombre de la rama principal en lugar de 'master'."
+                    data-aviso="">
+                    Configurar rama por defecto (main)
+                </button>
+
+                <button class="git-btn"
+                    data-comando="git config --global user.email &quot;tu@email.com&quot;"
+                    data-descripcion="Establece tu email a nivel global. Debe coincidir con el de tu cuenta en GitHub/GitLab para que los commits se asocien correctamente."
+                    data-aviso="Sustituye 'tu@email.com' por tu dirección de correo real.">
+                    Configurar email
+                </button>
+
+                <button class="git-btn"
+                    data-comando="git config --global core.editor &quot;code --wait&quot;"
+                    data-descripcion="Establece VS Code como editor por defecto para mensajes de commit, rebase interactivo, etc."
+                    data-aviso="Requiere tener el comando 'code' disponible en el PATH. Para otros editores usa: 'vim', 'nano', 'notepad', etc.">
+                    Configurar editor (VS Code)
+                </button>
+
+                <button class="git-btn"
+                    data-comando="git config --global user.name &quot;Tu Nombre&quot;"
+                    data-descripcion="Establece tu nombre de usuario a nivel global. Aparecerá en todos tus commits."
+                    data-aviso="Sustituye 'Tu Nombre' por tu nombre real o alias.">
+                    Configurar nombre
+                </button>
+
+                <button class="git-btn"
+                    data-comando="git config --global alias.st status"
+                    data-descripcion="Crea un alias 'git st' que ejecuta 'git status'. Puedes crear alias para cualquier comando frecuente."
+                    data-aviso="Sustituye 'st' por el nombre de tu alias y 'status' por el comando que quieres acortar.">
+                    Crear alias
+                </button>
+
+                <button class="git-btn"
+                    data-comando="git config --global --list"
+                    data-descripcion="Muestra solo la configuración global del usuario."
+                    data-aviso="">
+                    Ver configuración global
+                </button>
+
+                <button class="git-btn"
+                    data-comando="git config --list"
+                    data-descripcion="Muestra todas las opciones de configuración activas, tanto globales como locales del repositorio."
+                    data-aviso="">
+                    Ver toda la configuración
+                </button>
+            </div>
+        </section>
+
+        <!-- INICIAR -->
+        <section>
+            <h2 id="iniciar">Iniciar</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git clone &lt;url&gt;"
+                    data-descripcion="Clona un repositorio remoto en tu equipo." data-aviso="">
+                    Clonar repositorio
+                </button>
+
+                <button class="git-btn" data-comando="git remote add origin &lt;url&gt;"
+                    data-descripcion="Añade el remoto origin al repositorio actual."
+                    data-aviso="Debes ejecutar este comando dentro de un repositorio ya inicializado.">
+                    Conectar remoto
+                </button>
+
+                <button class="git-btn" data-comando="git init"
+                    data-descripcion="Crea un repositorio Git en el directorio actual." data-aviso="">
+                    Crear repositorio local
+                </button>
+
+                <button class="git-btn" data-comando="git push -u origin main"
+                    data-descripcion="Hace el primer push de la rama main y la vincula al remoto."
+                    data-aviso="Asegúrate de haber configurado antes origin.">
+                    Primer push con upstream
+                </button>
+
+                <button class="git-btn" data-comando="git branch -M main"
+                    data-descripcion="Renombra la rama actual a main." data-aviso="">
+                    Renombrar rama principal a main
+                </button>
+            </div>
+        </section>
+
+        <!-- PREPARAR CAMBIOS -->
+        <section>
+            <h2 id="preparar">Preparar cambios</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git add &lt;archivo&gt;"
+                    data-descripcion="Añade un archivo al área de staging." data-aviso="">
+                    Añadir archivo
+                </button>
+
+                <button class="git-btn" data-comando="git add -p"
+                    data-descripcion="Permite añadir cambios por fragmentos de forma interactiva."
+                    data-aviso="Muy útil para hacer commits más limpios.">
+                    Añadir interactivo
+                </button>
+
+                <button class="git-btn" data-comando="git add -u"
+                    data-descripcion="Añade al staging solo cambios en archivos ya trackeados."
+                    data-aviso="No incluye archivos nuevos sin seguimiento.">
+                    Añadir solo trackeados
+                </button>
+
+                <button class="git-btn" data-comando="git add ."
+                    data-descripcion="Añade todos los cambios del directorio actual al staging."
+                    data-aviso="Puede incluir archivos nuevos y modificados.">
+                    Añadir todo
+                </button>
+
+                <button class="git-btn" data-comando="git restore --staged &lt;archivo&gt;"
+                    data-descripcion="Quita un archivo del staging sin borrar sus cambios del directorio de trabajo."
+                    data-aviso="">
+                    Quitar archivo del staging
+                </button>
+
+                <button class="git-btn" data-comando="git restore --staged ."
+                    data-descripcion="Quita todos los archivos del staging." data-aviso="">
+                    Quitar todo del staging
+                </button>
+            </div>
+        </section>
+
+        <!-- COMMITS -->
+        <section>
+            <h2 id="commits">Commits</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git cherry-pick &lt;hash&gt;"
+                    data-descripcion="Aplica un commit concreto sobre la rama actual."
+                    data-aviso="Puede provocar conflictos si los cambios no encajan bien.">
+                    Aplicar commit concreto
+                </button>
+
+                <button class="git-btn" data-comando="git commit -m &quot;mensaje&quot;"
+                    data-descripcion="Crea un commit con mensaje." data-aviso="">
+                    Commit con mensaje
+                </button>
+
+                <button class="git-btn" data-comando="git commit -am &quot;mensaje&quot;"
+                    data-descripcion="Hace commit de todos los archivos trackeados modificados."
+                    data-aviso="No sirve para archivos nuevos.">
+                    Commit de trackeados
+                </button>
+
+                <button class="git-btn" data-comando="git commit --allow-empty -m &quot;mensaje&quot;"
+                    data-descripcion="Crea un commit vacío." data-aviso="Útil para pruebas o automatizaciones.">
+                    Crear commit vacío
+                </button>
+
+                <button class="git-btn" data-comando="git commit --amend"
+                    data-descripcion="Modifica el último commit."
+                    data-aviso="Cuidado si ya hiciste push y el historial es compartido.">
+                    Modificar último commit
+                </button>
+
+                <button class="git-btn" data-comando="git commit --amend -m &quot;nuevo mensaje&quot;"
+                    data-descripcion="Reemplaza el último commit y cambia su mensaje."
+                    data-aviso="Reescribe el historial del último commit.">
+                    Modificar último commit cambiando mensaje
+                </button>
+
+                <button class="git-btn" data-comando="git commit --amend --no-edit"
+                    data-descripcion="Añade cambios al último commit sin modificar su mensaje."
+                    data-aviso="Reescribe el historial del último commit.">
+                    Modificar último commit sin cambiar mensaje
+                </button>
+
+                <button class="git-btn" data-comando="git revert &lt;hash&gt;"
+                    data-descripcion="Crea un nuevo commit que revierte otro commit."
+                    data-aviso="Es más seguro que reset para cambios ya compartidos.">
+                    Revertir commit
+                </button>
+
+                <button class="git-btn" data-comando="git show &lt;hash&gt;"
+                    data-descripcion="Muestra el contenido y metadatos de un commit." data-aviso="">
+                    Ver un commit
+                </button>
+            </div>
+        </section>
+
+        <!-- SINCRONIZACIÓN -->
+        <section>
+            <h2 id="sincronizacion">Sincronización</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git fetch"
+                    data-descripcion="Descarga información del remoto sin fusionarla automáticamente." data-aviso="">
+                    Fetch
+                </button>
+
+                <button class="git-btn" data-comando="git fetch --all"
+                    data-descripcion="Descarga información de todos los remotos configurados." data-aviso="">
+                    Fetch de todos los remotos
+                </button>
+
+                <button class="git-btn" data-comando="git pull"
+                    data-descripcion="Descarga y fusiona cambios del remoto en la rama actual." data-aviso="">
+                    Pull
+                </button>
+
+                <button class="git-btn" data-comando="git pull --rebase"
+                    data-descripcion="Descarga cambios y reaplica tus commits locales encima."
+                    data-aviso="Puede ayudar a mantener un historial más limpio.">
+                    Pull con rebase
+                </button>
+
+                <button class="git-btn" data-comando="git push"
+                    data-descripcion="Sube los commits locales al remoto configurado para la rama actual."
+                    data-aviso="">
+                    Push
+                </button>
+
+                <button class="git-btn" data-comando="git push -u origin &lt;rama&gt;"
+                    data-descripcion="Sube la rama al remoto y la deja vinculada para futuros push y pull."
+                    data-aviso="">
+                    Push con upstream
+                </button>
+
+                <button class="git-btn" data-comando="git push --force"
+                    data-descripcion="Fuerza el push sobreescribiendo el historial remoto sin comprobaciones."
+                    data-aviso="Peligro: puede eliminar commits del remoto que otros colaboradores ya tienen. Prefiere --force-with-lease siempre que sea posible.">
+                    Push forzado
+                </button>
+
+                <button class="git-btn" data-comando="git push --force-with-lease"
+                    data-descripcion="Fuerza el push de forma más segura que --force."
+                    data-aviso="Peligro: puede sobrescribir historial remoto.">
+                    Push forzado seguro
+                </button>
+            </div>
+        </section>
+
+        <!-- RAMAS -->
+        <section>
+            <h2 id="ramas">Ramas</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git push origin --delete &lt;nombre-rama&gt;"
+                    data-descripcion="Elimina una rama del repositorio remoto. La rama local no se ve afectada."
+                    data-aviso="Solo borra la rama en el remoto. Para borrarla también en local usa 'git branch -d'.">
+                    Borrar rama remota
+                </button>
+
+                <button class="git-btn" data-comando="git branch -d &lt;nombre-rama&gt;"
+                    data-descripcion="Borra una rama local ya fusionada." data-aviso="">
+                    Borrar rama local
+                </button>
+
+                <button class="git-btn" data-comando="git switch &lt;nombre-rama&gt;"
+                    data-descripcion="Cambia a otra rama." data-aviso="">
+                    Cambiar de rama
+                </button>
+
+                <button class="git-btn" data-comando="git checkout -b &lt;nombre-rama&gt;"
+                    data-descripcion="Forma clásica de crear una rama nueva y cambiar a ella en un solo paso. Equivalente a 'git switch -c'."
+                    data-aviso="Si quieres subir la rama al remoto después, ejecuta: git push -u origin &lt;nombre-rama&gt;">
+                    Crear y cambiar de rama (checkout)
+                </button>
+
+                <button class="git-btn" data-comando="git switch -c &lt;nombre-rama&gt;"
+                    data-descripcion="Crea una rama nueva y cambia a ella en un solo paso."
+                    data-aviso="Si quieres subir la rama al remoto después, ejecuta: git push -u origin &lt;nombre-rama&gt;">
+                    Crear y cambiar de rama (switch)
+                </button>
+
+                <button class="git-btn" data-comando="git branch &lt;nombre-rama&gt;"
+                    data-descripcion="Crea una rama nueva sin cambiar a ella."
+                    data-aviso="Si quieres subir la rama al remoto después, ejecuta: git push -u origin &lt;nombre-rama&gt;">
+                    Crear rama
+                </button>
+
+                <button class="git-btn" data-comando="git switch -c &lt;nombre-rama&gt; origin/&lt;nombre-rama&gt;"
+                    data-descripcion="Crea una rama local a partir de una rama remota y establece el seguimiento automáticamente."
+                    data-aviso="">
+                    Crear rama local desde remota
+                </button>
+
+                <button class="git-btn" data-comando="git branch -D &lt;nombre-rama&gt;"
+                    data-descripcion="Fuerza el borrado de una rama local."
+                    data-aviso="Peligro: puede eliminar trabajo no fusionado.">
+                    Forzar borrado de rama
+                </button>
+
+                <button class="git-btn" data-comando="git merge &lt;nombre-rama&gt;"
+                    data-descripcion="Fusiona la rama indicada en la rama actual."
+                    data-aviso="Puede provocar conflictos.">
+                    Fusionar rama
+                </button>
+
+                <button class="git-btn" data-comando="git rebase &lt;nombre-rama&gt;"
+                    data-descripcion="Reaplica los commits de la rama actual sobre otra rama."
+                    data-aviso="Cuidado si trabajas con historial compartido.">
+                    Rebase sobre otra rama
+                </button>
+
+                <button class="git-btn" data-comando="git branch -m &lt;nuevo-nombre&gt;"
+                    data-descripcion="Renombra la rama actual." data-aviso="">
+                    Renombrar rama actual
+                </button>
+
+                <button class="git-btn" data-comando="git push -u origin &lt;nombre-rama&gt;"
+                    data-descripcion="Sube una rama recién creada al remoto y establece el seguimiento automático. A partir de aquí podrás hacer 'git push' y 'git pull' sin especificar el remoto."
+                    data-aviso="Necesario la primera vez que quieres publicar una rama local nueva en el remoto.">
+                    Subir rama nueva al remoto
+                </button>
+
+                <button class="git-btn" data-comando="git branch -a"
+                    data-descripcion="Muestra ramas locales y remotas." data-aviso="">
+                    Ver todas las ramas
+                </button>
+
+                <button class="git-btn" data-comando="git branch --merged"
+                    data-descripcion="Lista las ramas que ya han sido fusionadas en la rama actual. Útil para limpiar ramas obsoletas."
+                    data-aviso="">
+                    Ver ramas ya fusionadas
+                </button>
+
+                <button class="git-btn" data-comando="git branch --no-merged"
+                    data-descripcion="Lista las ramas que todavía no han sido fusionadas en la rama actual."
+                    data-aviso="">
+                    Ver ramas sin fusionar
+                </button>
+
+                <button class="git-btn" data-comando="git branch"
+                    data-descripcion="Muestra las ramas locales." data-aviso="">
+                    Ver ramas locales
+                </button>
+            </div>
+        </section>
+
+        <!-- CONSULTAR -->
+        <section>
+            <h2 id="consultar">Consultar</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git diff &lt;rama1&gt;..&lt;rama2&gt;"
+                    data-descripcion="Muestra las diferencias entre dos ramas."
+                    data-aviso="">
+                    Comparar dos ramas
+                </button>
+
+                <button class="git-btn" data-comando="git log --author=&quot;&lt;nombre&gt;&quot;"
+                    data-descripcion="Filtra el historial de commits mostrando solo los del autor indicado."
+                    data-aviso="">
+                    Filtrar historial por autor
+                </button>
+
+                <button class="git-btn" data-comando="git log --since=&quot;2 weeks ago&quot;"
+                    data-descripcion="Muestra commits realizados en las últimas dos semanas. Puedes cambiar el valor a '1 month ago', '2024-01-01', etc."
+                    data-aviso="">
+                    Filtrar historial por fecha
+                </button>
+
+                <button class="git-btn" data-comando="git blame &lt;archivo&gt;"
+                    data-descripcion="Muestra quién escribió cada línea de un archivo y en qué commit."
+                    data-aviso="">
+                    Ver autoría por línea
+                </button>
+
+                <button class="git-btn" data-comando="git diff"
+                    data-descripcion="Muestra los cambios no preparados para commit." data-aviso="">
+                    Ver cambios sin stage
+                </button>
+
+                <button class="git-btn" data-comando="git diff --staged"
+                    data-descripcion="Muestra los cambios que están en staging." data-aviso="">
+                    Ver cambios staged
+                </button>
+
+                <button class="git-btn" data-comando="git config --list"
+                    data-descripcion="Muestra la configuración activa de Git." data-aviso="">
+                    Ver configuración
+                </button>
+
+                <button class="git-btn" data-comando="git log"
+                    data-descripcion="Muestra el historial completo de commits." data-aviso="">
+                    Ver historial
+                </button>
+
+                <button class="git-btn" data-comando="git log --oneline --graph --decorate --all"
+                    data-descripcion="Muestra un historial visual con ramas y commits." data-aviso="">
+                    Ver historial en grafo
+                </button>
+
+                <button class="git-btn" data-comando="git reflog"
+                    data-descripcion="Muestra el historial de movimientos del puntero HEAD. Muy útil para recuperar commits o ramas borradas por error."
+                    data-aviso="">
+                    Ver historial de HEAD (reflog)
+                </button>
+
+                <button class="git-btn" data-comando="git log --oneline"
+                    data-descripcion="Muestra el historial resumido en una línea por commit." data-aviso="">
+                    Ver historial resumido
+                </button>
+
+                <button class="git-btn" data-comando="git branch --show-current"
+                    data-descripcion="Muestra el nombre de la rama actual." data-aviso="">
+                    Ver rama actual
+                </button>
+
+                <button class="git-btn" data-comando="git remote -v"
+                    data-descripcion="Muestra los remotos configurados y sus URLs." data-aviso="">
+                    Ver remotos configurados
+                </button>
+
+                <button class="git-btn" data-comando="git status"
+                    data-descripcion="Muestra el estado actual del repositorio." data-aviso="">
+                    Ver estado
+                </button>
+
+                <button class="git-btn" data-comando="git status -s"
+                    data-descripcion="Muestra una versión resumida del estado." data-aviso="">
+                    Ver estado resumido
+                </button>
+            </div>
+        </section>
+
+        <!-- REMOTOS -->
+        <section>
+            <h2 id="remotos">Remotos</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git remote add &lt;nombre&gt; &lt;url&gt;"
+                    data-descripcion="Añade un remoto nuevo." data-aviso="">
+                    Añadir remoto
+                </button>
+
+                <button class="git-btn" data-comando="git remote set-url &lt;nombre&gt; &lt;nueva-url&gt;"
+                    data-descripcion="Cambia la URL asociada a un remoto." data-aviso="">
+                    Cambiar URL del remoto
+                </button>
+
+                <button class="git-btn" data-comando="git remote remove &lt;nombre&gt;"
+                    data-descripcion="Elimina un remoto." data-aviso="">
+                    Eliminar remoto
+                </button>
+
+                <button class="git-btn" data-comando="git remote rename &lt;viejo&gt; &lt;nuevo&gt;"
+                    data-descripcion="Renombra un remoto existente." data-aviso="">
+                    Renombrar remoto
+                </button>
+
+                <button class="git-btn" data-comando="git remote show origin"
+                    data-descripcion="Muestra información detallada del remoto origin." data-aviso="">
+                    Ver detalles de origin
+                </button>
+
+                <button class="git-btn" data-comando="git remote -v"
+                    data-descripcion="Muestra la lista de remotos configurados." data-aviso="">
+                    Ver remotos
+                </button>
+            </div>
+        </section>
+
+        <!-- TAGS -->
+        <section>
+            <h2 id="tags">Tags</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git tag -d &lt;nombre-tag&gt;"
+                    data-descripcion="Borra una etiqueta local." data-aviso="">
+                    Borrar tag local
+                </button>
+
+                <button class="git-btn" data-comando="git push origin --delete &lt;nombre-tag&gt;"
+                    data-descripcion="Borra una etiqueta remota." data-aviso="">
+                    Borrar tag remota
+                </button>
+
+                <button class="git-btn" data-comando="git tag -a &lt;nombre-tag&gt; -m &quot;mensaje&quot;"
+                    data-descripcion="Crea una etiqueta anotada con mensaje." data-aviso="">
+                    Crear tag anotada
+                </button>
+
+                <button class="git-btn" data-comando="git tag &lt;nombre-tag&gt;"
+                    data-descripcion="Crea una etiqueta ligera." data-aviso="">
+                    Crear tag ligera
+                </button>
+
+                <button class="git-btn" data-comando="git push origin &lt;nombre-tag&gt;"
+                    data-descripcion="Sube una etiqueta concreta al remoto." data-aviso="">
+                    Subir una tag
+                </button>
+
+                <button class="git-btn" data-comando="git push origin --tags"
+                    data-descripcion="Sube todas las etiquetas al remoto." data-aviso="">
+                    Subir todas las tags
+                </button>
+
+                <button class="git-btn" data-comando="git tag"
+                    data-descripcion="Muestra la lista de etiquetas del repositorio." data-aviso="">
+                    Ver tags
+                </button>
+            </div>
+        </section>
+
+        <!-- STASH -->
+        <section>
+            <h2 id="stash">Stash</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git stash apply"
+                    data-descripcion="Aplica el último stash sin borrarlo." data-aviso="">
+                    Aplicar stash
+                </button>
+
+                <button class="git-btn" data-comando="git stash apply stash@{&lt;n&gt;}"
+                    data-descripcion="Aplica un stash concreto por su índice sin borrarlo. Sustituye &lt;n&gt; por el número del stash que ves en 'git stash list'."
+                    data-aviso="">
+                    Aplicar stash por índice
+                </button>
+
+                <button class="git-btn" data-comando="git stash pop"
+                    data-descripcion="Aplica el último stash y lo elimina." data-aviso="">
+                    Aplicar y borrar stash
+                </button>
+
+                <button class="git-btn" data-comando="git stash clear"
+                    data-descripcion="Borra todos los stashes."
+                    data-aviso="Peligro: no se puede deshacer fácilmente.">
+                    Borrar todos los stashes
+                </button>
+
+                <button class="git-btn" data-comando="git stash drop"
+                    data-descripcion="Borra el último stash." data-aviso="">
+                    Borrar stash
+                </button>
+
+                <button class="git-btn" data-comando="git stash push -m &quot;mensaje&quot;"
+                    data-descripcion="Guarda cambios en stash con una descripción." data-aviso="">
+                    Guardar stash con mensaje
+                </button>
+
+                <button class="git-btn" data-comando="git stash"
+                    data-descripcion="Guarda temporalmente los cambios no confirmados." data-aviso="">
+                    Guardar cambios en stash
+                </button>
+
+                <button class="git-btn" data-comando="git stash show -p"
+                    data-descripcion="Muestra el contenido completo (diff) del último stash guardado."
+                    data-aviso="">
+                    Ver contenido del último stash
+                </button>
+
+                <button class="git-btn" data-comando="git stash list"
+                    data-descripcion="Muestra la lista de stashes guardados." data-aviso="">
+                    Ver stashes
+                </button>
+            </div>
+        </section>
+
+        <!-- DESHACER -->
+        <section>
+            <h2 id="deshacer">Deshacer</h2>
+            <div class="botonera">
+                <button class="git-btn" data-comando="git clean -fd"
+                    data-descripcion="Borra archivos y directorios no trackeados."
+                    data-aviso="Peligro: elimina archivos no versionados.">
+                    Borrar archivos no trackeados
+                </button>
+
+                <button class="git-btn" data-comando="git restore &lt;archivo&gt;"
+                    data-descripcion="Descarta los cambios no staged de un archivo."
+                    data-aviso="Se perderán los cambios locales de ese archivo.">
+                    Descartar cambios en archivo
+                </button>
+
+                <button class="git-btn" data-comando="git restore ."
+                    data-descripcion="Descarta todos los cambios no staged del directorio actual."
+                    data-aviso="Se perderán cambios locales no guardados.">
+                    Descartar todos los cambios no staged
+                </button>
+
+                <button class="git-btn" data-comando="git reset --mixed HEAD~1"
+                    data-descripcion="Deshace el último commit y deja los cambios fuera del staging." data-aviso="">
+                    Deshacer último commit dejando cambios sin stage
+                </button>
+
+                <button class="git-btn" data-comando="git reset --hard HEAD~1"
+                    data-descripcion="Deshace el último commit y borra los cambios asociados."
+                    data-aviso="Peligro: elimina cambios de forma destructiva.">
+                    Deshacer último commit borrando cambios
+                </button>
+
+                <button class="git-btn" data-comando="git reset --soft HEAD~1"
+                    data-descripcion="Deshace el último commit, pero mantiene los cambios en staging." data-aviso="">
+                    Deshacer último commit manteniendo staging
+                </button>
+
+                <button class="git-btn" data-comando="git clean -n"
+                    data-descripcion="Simula el borrado de archivos no trackeados sin eliminar nada. Ideal para revisar qué se borraría antes de ejecutar 'git clean -fd'."
+                    data-aviso="">
+                    Simular borrado de no trackeados (dry run)
+                </button>
+
+                <button class="git-btn" data-comando="git reset --hard &lt;hash&gt;"
+                    data-descripcion="Mueve HEAD al commit indicado y descarta todos los cambios posteriores de forma permanente."
+                    data-aviso="Peligro: elimina commits y cambios de forma destructiva. Úsalo con cuidado.">
+                    Volver a un commit concreto (destructivo)
+                </button>
+            </div>
+        </section>
+
+        <!-- RESULTADO -->
+        <section>
+            <h2 id="resultado">Resultado</h2>
+
+            <label for="comandoGenerado">Comando generado</label>
+            <textarea id="comandoGenerado" readonly></textarea>
+
+            <div class="acciones-resultado">
+                <button id="btnCopiar">Copiar</button>
+                <button id="btnLimpiar">Limpiar</button>
+            </div>
+
+            <div class="info-box">
+                <h3>Descripción</h3>
+                <p id="descripcionComando" class="muted">Aquí aparecerá la descripción del comando seleccionado.</p>
+            </div>
+
+            <div class="info-box" id="cajaAviso">
+                <h3>Aviso</h3>
+                <p id="avisoComando" class="muted">Aquí aparecerán advertencias si el comando requiere precaución.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Git4All © 2026 PacheDev · <a href="https://github.com/PacheDev/Git4All" target="_blank">GitHub</a>
+    </footer>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
