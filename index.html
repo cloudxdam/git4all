@@ -60,50 +60,42 @@
         <section>
             <h2 id="configuracion">Configuración</h2>
             <div class="botonera">
-                <button class="git-btn"
-                    data-comando="git config --global init.defaultBranch main"
+                <button class="git-btn" data-comando="git config --global init.defaultBranch main"
                     data-descripcion="Hace que todos los repositorios nuevos usen 'main' como nombre de la rama principal en lugar de 'master'."
                     data-aviso="">
                     Configurar rama por defecto (main)
                 </button>
 
-                <button class="git-btn"
-                    data-comando="git config --global user.email &quot;tu@email.com&quot;"
+                <button class="git-btn" data-comando="git config --global user.email &quot;tu@email.com&quot;"
                     data-descripcion="Establece tu email a nivel global. Debe coincidir con el de tu cuenta en GitHub/GitLab para que los commits se asocien correctamente."
                     data-aviso="Sustituye 'tu@email.com' por tu dirección de correo real.">
                     Configurar email
                 </button>
 
-                <button class="git-btn"
-                    data-comando="git config --global core.editor &quot;code --wait&quot;"
+                <button class="git-btn" data-comando="git config --global core.editor &quot;code --wait&quot;"
                     data-descripcion="Establece VS Code como editor por defecto para mensajes de commit, rebase interactivo, etc."
                     data-aviso="Requiere tener el comando 'code' disponible en el PATH. Para otros editores usa: 'vim', 'nano', 'notepad', etc.">
                     Configurar editor (VS Code)
                 </button>
 
-                <button class="git-btn"
-                    data-comando="git config --global user.name &quot;Tu Nombre&quot;"
+                <button class="git-btn" data-comando="git config --global user.name &quot;Tu Nombre&quot;"
                     data-descripcion="Establece tu nombre de usuario a nivel global. Aparecerá en todos tus commits."
                     data-aviso="Sustituye 'Tu Nombre' por tu nombre real o alias.">
                     Configurar nombre
                 </button>
 
-                <button class="git-btn"
-                    data-comando="git config --global alias.st status"
+                <button class="git-btn" data-comando="git config --global alias.st status"
                     data-descripcion="Crea un alias 'git st' que ejecuta 'git status'. Puedes crear alias para cualquier comando frecuente."
                     data-aviso="Sustituye 'st' por el nombre de tu alias y 'status' por el comando que quieres acortar.">
                     Crear alias
                 </button>
 
-                <button class="git-btn"
-                    data-comando="git config --global --list"
-                    data-descripcion="Muestra solo la configuración global del usuario."
-                    data-aviso="">
+                <button class="git-btn" data-comando="git config --global --list"
+                    data-descripcion="Muestra solo la configuración global del usuario." data-aviso="">
                     Ver configuración global
                 </button>
 
-                <button class="git-btn"
-                    data-comando="git config --list"
+                <button class="git-btn" data-comando="git config --list"
                     data-descripcion="Muestra todas las opciones de configuración activas, tanto globales como locales del repositorio."
                     data-aviso="">
                     Ver toda la configuración
@@ -210,8 +202,7 @@
                     Crear commit vacío
                 </button>
 
-                <button class="git-btn" data-comando="git commit --amend"
-                    data-descripcion="Modifica el último commit."
+                <button class="git-btn" data-comando="git commit --amend" data-descripcion="Modifica el último commit."
                     data-aviso="Cuidado si ya hiciste push y el historial es compartido.">
                     Modificar último commit
                 </button>
@@ -365,8 +356,8 @@
                     Subir rama nueva al remoto
                 </button>
 
-                <button class="git-btn" data-comando="git branch -a"
-                    data-descripcion="Muestra ramas locales y remotas." data-aviso="">
+                <button class="git-btn" data-comando="git branch -a" data-descripcion="Muestra ramas locales y remotas."
+                    data-aviso="">
                     Ver todas las ramas
                 </button>
 
@@ -382,8 +373,8 @@
                     Ver ramas sin fusionar
                 </button>
 
-                <button class="git-btn" data-comando="git branch"
-                    data-descripcion="Muestra las ramas locales." data-aviso="">
+                <button class="git-btn" data-comando="git branch" data-descripcion="Muestra las ramas locales."
+                    data-aviso="">
                     Ver ramas locales
                 </button>
             </div>
@@ -394,8 +385,7 @@
             <h2 id="consultar">Consultar</h2>
             <div class="botonera">
                 <button class="git-btn" data-comando="git diff &lt;rama1&gt;..&lt;rama2&gt;"
-                    data-descripcion="Muestra las diferencias entre dos ramas."
-                    data-aviso="">
+                    data-descripcion="Muestra las diferencias entre dos ramas." data-aviso="">
                     Comparar dos ramas
                 </button>
 
@@ -412,8 +402,7 @@
                 </button>
 
                 <button class="git-btn" data-comando="git blame &lt;archivo&gt;"
-                    data-descripcion="Muestra quién escribió cada línea de un archivo y en qué commit."
-                    data-aviso="">
+                    data-descripcion="Muestra quién escribió cada línea de un archivo y en qué commit." data-aviso="">
                     Ver autoría por línea
                 </button>
 
@@ -572,14 +561,13 @@
                     Aplicar y borrar stash
                 </button>
 
-                <button class="git-btn" data-comando="git stash clear"
-                    data-descripcion="Borra todos los stashes."
+                <button class="git-btn" data-comando="git stash clear" data-descripcion="Borra todos los stashes."
                     data-aviso="Peligro: no se puede deshacer fácilmente.">
                     Borrar todos los stashes
                 </button>
 
-                <button class="git-btn" data-comando="git stash drop"
-                    data-descripcion="Borra el último stash." data-aviso="">
+                <button class="git-btn" data-comando="git stash drop" data-descripcion="Borra el último stash."
+                    data-aviso="">
                     Borrar stash
                 </button>
 
@@ -594,8 +582,7 @@
                 </button>
 
                 <button class="git-btn" data-comando="git stash show -p"
-                    data-descripcion="Muestra el contenido completo (diff) del último stash guardado."
-                    data-aviso="">
+                    data-descripcion="Muestra el contenido completo (diff) del último stash guardado." data-aviso="">
                     Ver contenido del último stash
                 </button>
 
@@ -684,7 +671,7 @@
     </main>
 
     <footer>
-        Git4All © 2026 PacheDev · <a href="https://github.com/PacheDev/Git4All" target="_blank">GitHub</a>
+        Git4All © 2026 PacheDev · <a href="https://github.com/cloudxdam/git4all" target="_blank">GitHub</a>
     </footer>
 
     <script src="app.js"></script>
