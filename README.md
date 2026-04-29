@@ -4,7 +4,8 @@
 
 Ideal para estudiantes, perfiles junior y cualquier persona que quiera tener a mano una referencia visual y práctica de Git.
 
-🔗 **Demo en vivo:** `https://cloudxdam.github.io/git4all/`
+🔗 **Demo principal:** https://git4all.vercel.app/  
+🔗 **Mirror en GitHub Pages:** https://cloudxdam.github.io/git4all/
 
 ## Vista previa
 
